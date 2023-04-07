@@ -1,0 +1,33 @@
+.btn-accept {
+    padding: 5px 20px;
+    background-color: #5b7b7a;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.btn-accept:hover {
+    background-color: #465f5e;
+}
+
+.btn-accept:disabled {
+    background-color: rgba(101, 114, 114, 0.750);
+}
+
+.btn-denied {
+    padding: 5px 20px;
+    background-color: #c61700;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.btn-denied:hover {
+    background-color: rgb(226, 47, 2);
+}
+
+.btn-denied:disabled {
+    background-color: rgba(198, 119, 0, 0.750);
+}
