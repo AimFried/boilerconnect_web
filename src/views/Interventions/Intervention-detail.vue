@@ -10,11 +10,14 @@
 
   <div class="row g-0 content-step">
     <div class="col-6 pe-2">
+      <label>Nom</label>
       <input class="form-control" type="text" :value="data.name" aria-label="Disabled input example" disabled readonly>
     </div>
     <div class="col-6 ps-2">
+      <label>Prénom</label>
       <input class="form-control" type="text" :value="data.surname" aria-label="Disabled input example" disabled readonly>
     </div>
+    <label>Adresse</label>
     <input class="form-control" type="text" :value="data.address" aria-label="Disabled input example" disabled readonly>
   </div>
 
@@ -22,12 +25,15 @@
  
   <div class="row g-0 content-step">
           <div class="col-4 pe-2">
+            <label>Modèle</label>
             <input class="form-control" type="text" :value="data.boiler" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 pe-2 ps-2">
+            <label>Marque</label>
             <input class="form-control" type="text" :value="data.brand" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 ps-2">
+            <label>Numéro de serie</label>
             <input class="form-control" type="text" :value="data.serialNumber" aria-label="Disabled input example" disabled readonly>
           </div>
         </div>
@@ -36,25 +42,31 @@
 
         <div class="row g-0 content-step">
           <div class="col-4 pe-2">
+            <label>Technicien</label>
             <input class="form-control" type="text" :value="data.intervener" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 pe-2 ps-2">
-            <input class="form-control" type="text" :value="data.duration" aria-label="Disabled input example" disabled readonly>
+            <label>Durée</label>
+            <input class="form-control" type="text" :value="data.duration + ' min'" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 ps-2">
+            <label>Description</label>
             <input class="form-control" type="text" :value="data.description" aria-label="Disabled input example" disabled readonly>
           </div>
         </div>
 
         <div class="row g-0 content-step">
           <div class="col-4 pe-2">
-            <input class="form-control" type="text" :value="data.dateEntryService" aria-label="Disabled input example" disabled readonly>
+            <label>En service depuis</label>
+            <input class="form-control" type="text" :value="formatDate(data.dateEntryService)" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 pe-2 ps-2">
-            <input class="form-control" type="text" :value="data.dateIntervention" aria-label="Disabled input example" disabled readonly>
+            <label>Fait le</label>
+            <input class="form-control" type="text" :value="formatDate(data.dateIntervention)" aria-label="Disabled input example" disabled readonly>
           </div>
           <div class="col-4 ps-2">
-            <input class="form-control" type="text" :value="data.updated_at" aria-label="Disabled input example" disabled readonly>
+            <label>Publication le</label>
+            <input class="form-control" type="text" :value="formatDate(data.created_at)" aria-label="Disabled input example" disabled readonly>
           </div>
         </div>
         <button class="btn-denied" data-bs-toggle="modal" data-bs-target="#deleteIntervention">Supprimer</button>
@@ -94,6 +106,16 @@ export default {
     this.refreshIntervention();
   },
   methods: {
+    formatDate(stringDate) {
+      var date = new Date(stringDate);
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+
+      var dateFormatee = ('0' + day).slice(-2) + '/' + ('0' + month).slice(-2) + '/' + year;
+
+      return dateFormatee;
+    },
     refreshIntervention() {
       api.get('intervention?id=' + this.$route.params.id )
         .then(response => {
