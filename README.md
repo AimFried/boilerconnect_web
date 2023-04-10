@@ -41,10 +41,6 @@ Cette version permet de pouvoir consulter les rapports d'interventions et bien p
   ```bash
   npm run dev
   ```
- * En mode production
- ```bash
-  npm build
- ```
 ## 🛠️ Configuration
 
 Connection à l'API :
